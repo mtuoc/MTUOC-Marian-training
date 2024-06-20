@@ -4,12 +4,14 @@ from statistics import mean, stdev
 
 cfL1=sys.argv[1]
 cfL2=sys.argv[2]
+maxlines=int(sys.argv[3])
 
 entrada1=codecs.open(cfL1,"r",encoding="utf-8")
 entrada2=codecs.open(cfL2,"r",encoding="utf-8")
 
 
 ratios=[]
+cont=0
 while 1:
     liniaL1=entrada1.readline()
     if not liniaL1:
@@ -21,6 +23,9 @@ while 1:
     lenL2=len(liniaL2)
     ratio=lenL2/lenL1
     ratios.append(ratio)
+    cont+=1
+    if not maxlines==-1 and cont>maxlines:
+        break
     
 mean=mean(ratios)
 stdev=stdev(ratios)
